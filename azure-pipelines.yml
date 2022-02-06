@@ -25,19 +25,19 @@ stages:
         tags: |
           $(tag)
 
-# - stage: 'Deploy'
-#   displayName: 'Deploy the container'
-#   dependsOn: Build
-#   jobs:
-#   - job: 'Deploy'
-#     displayName: 'Deploy job'
-#     pool:
-#       vmImage: 'ubuntu-20.04'
-#     variables:
-#     - group: Release
-#     steps:
-#     - task: AzureWebAppContainer@1
-#       inputs:
-#        appName: docker-poc-foundry
-#        azureSubscription: 'docker-rg'
-#        imageName: dockerpocregistryfoundry.azurecr.io/$(webRepository):$(build.buildId)
+- stage: 'Deploy'
+  displayName: 'Deploy the container'
+  dependsOn: Build
+  jobs:
+  - job: 'Deploy'
+    displayName: 'Deploy job'
+    pool:
+      vmImage: 'ubuntu-20.04'
+    variables:
+    - group: Release
+    steps:
+    - task: AzureWebAppContainer@1
+      inputs:
+       appName: docker-poc-foundry
+       azureSubscription: 'docker-rg'
+       imageName: dockerpocregistryfoundry.azurecr.io/$(webRepository):$(build.buildId)
