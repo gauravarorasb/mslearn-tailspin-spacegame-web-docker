@@ -39,5 +39,5 @@ stages:
     - task: AzureWebAppContainer@1
       inputs:
        appName: docker-poc-foundry
-       azureSubscription: 'Resource Manager - Tailspin - Space Game'
+       azureSubscription: 'docker-rg'
        imageName: dockerpocregistryfoundry.azurecr.io/$(webRepository):$(build.buildId)
